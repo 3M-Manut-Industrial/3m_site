@@ -1,60 +1,187 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3M Manutenção Industrial</title>
+  <meta name="description" content="Serviços de manutenção industrial, automação e montagem de painéis elétricos em Três de Maio - RS.">
+  <meta property="og:title" content="3M Manutenção Industrial" />
+  <meta property="og:description" content="Projetos, automação e soluções sob medida para sua indústria." />
+  <meta property="og:image" content="logo.png" />
+  <meta property="og:url" content="https://3m-manut-industrial.github.io/3m_site/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: #f4f4f4; }
-    header { background: #002f4b; color: #fff; padding: 20px 0; text-align: center; }
-    nav ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 20px; }
-    nav a { color: white; text-decoration: none; font-weight: bold; }
-    .hero { background: url('https://via.placeholder.com/1600x400') no-repeat center center/cover; padding: 100px 20px; color: white; text-align: center; }
-    .hero h1 { font-size: 3em; }
-    .section { padding: 50px 20px; max-width: 1000px; margin: auto; }
-    .services, .contact { background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 30px; }
-    footer { background: #002f4b; color: white; text-align: center; padding: 20px 0; }
-    .button { display: inline-block; padding: 10px 20px; background: #0078d4; color: white; border-radius: 5px; text-decoration: none; margin-top: 20px; }
+    body { margin: 0; font-family: Arial, sans-serif; color: #333; }
+    header { background: #00264d; color: white; padding: 20px; display: flex; align-items: center; justify-content: space-between; }
+    header img { height: 50px; }
+    nav a { color: white; margin-left: 20px; text-decoration: none; }
+    .hero { background: url('logo.png') no-repeat center center/cover; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 40px; background-color: #005288; }
+    .hero h1 { font-size: 2.5em; }
+    .hero p { font-size: 1.2em; }
+    .btn-whatsapp, .btn-orcamento { background: #25D366; color: white; padding: 10px 20px; margin: 10px; text-decoration: none; border-radius: 5px; }
+    section { padding: 40px 20px; max-width: 1000px; margin: auto; }
+    .servicos, .diferenciais, .depoimentos, .galeria { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .card { background: #f5f5f5; padding: 20px; border-radius: 10px; text-align: center; }
+    footer { background: #00264d; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+    form input, form textarea { width: 100%; padding: 10px; margin-top: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; }
+    form button { padding: 10px 20px; background: #005288; color: white; border: none; border-radius: 5px; }
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: #fff;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 30px;
+      z-index: 100;
+    }
+    .whatsapp-float i {
+      margin-top: 15px;
+    }
+    .galeria img { cursor: pointer; transition: 0.3s; }
+    .galeria img:hover { opacity: 0.8; }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+    }
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .nav-arrow {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      font-size: 40px;
+      padding: 0 20px;
+      user-select: none;
+    }
+    .prev { left: 0; }
+    .next { right: 0; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>3M Manutenção Industrial</h1>
-    <p>Especialistas em manutenção, automação e projetos industriais</p>
-    <nav>
-      <ul>
-        <li><a href="#servicos">Serviços</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- conteúdo anterior -->
 
-  <div class="hero">
-    <h1>Qualidade e eficiência para sua indústria</h1>
-    <p>Projetos de painéis elétricos, manutenção industrial e muito mais</p>
-    <a href="#contato" class="button">Solicite um orçamento</a>
+  <section id="diferenciais">
+    <h2>Nossos Diferenciais</h2>
+    <div class="diferenciais">
+      <div class="card">
+        <i class="fas fa-tools fa-2x"></i>
+        <h3>Experiência e Agilidade</h3>
+        <p>Mais de 10 anos de experiência em manutenção industrial e soluções rápidas.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-bolt fa-2x"></i>
+        <h3>Automação e Eficiência</h3>
+        <p>Projetos personalizados de automação para melhorar seu processo produtivo.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-check-circle fa-2x"></i>
+        <h3>Comprometimento</h3>
+        <p>Atendimento próximo e soluções sob medida para cada cliente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="depoimentos">
+    <h2>O que dizem nossos clientes</h2>
+    <div class="depoimentos">
+      <div class="card">
+        <p>“Empresa confiável, atendimento excelente e serviços com qualidade.”</p>
+        <strong>— Alexandre B.</strong>
+      </div>
+      <div class="card">
+        <p>“Recomendo! Atendem com rapidez e muita responsabilidade.”</p>
+        <strong>— Juliano F.</strong>
+      </div>
+      <div class="card">
+        <p>“Excelente empresa de manutenção industrial! Sempre atenciosos.”</p>
+        <strong>— Paula M.</strong>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <h2>Galeria de Projetos</h2>
+    <div class="galeria">
+      <img src="servico1.png" alt="Painel de Automação Industrial" onclick="openModal(this)">
+      <img src="servico2.png" alt="Instalação de Comando Elétrico" onclick="openModal(this)">
+      <img src="servico3.png" alt="Manutenção em Máquina CNC" onclick="openModal(this)">
+      <img src="servico4.png" alt="Montagem de Quadro de Distribuição" onclick="openModal(this)">
+      <img src="servico5.png" alt="Sistema de Automação em Linha de Produção" onclick="openModal(this)">
+    </div>
+  </section>
+
+  <div id="modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="nav-arrow prev" onclick="changeImage(-1)">&#10094;</span>
+    <img class="modal-content" id="modal-img">
+    <span class="nav-arrow next" onclick="changeImage(1)">&#10095;</span>
   </div>
 
-  <section id="servicos" class="section services">
-    <h2>Serviços</h2>
-    <ul>
-      <li>✔ Manutenção corretiva e preventiva em máquinas industriais</li>
-      <li>✔ Desenvolvimento e montagem de painéis elétricos de automação</li>
-      <li>✔ Projetos mecânicos e automação industrial</li>
-      <li>✔ Consultoria técnica e melhorias de processos</li>
-    </ul>
-  </section>
+  <a href="https://wa.me/5555997268522" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-  <section id="contato" class="section contact">
-    <h2>Contato</h2>
-    <p>Entre em contato para saber como podemos ajudar sua empresa:</p>
-    <p>Email: <a href="mailto:contato@3mmanutencao.com">contato@3mmanutencao.com</a></p>
-    <p>WhatsApp: <a href="https://wa.me/5555999999999">(55) 9 9999-9999</a></p>
-    <p>Cidade: Três de Maio - RS</p>
-  </section>
+  <script>
+    window.onload = function () {
+      let currentIndex = 0;
+      const images = document.querySelectorAll('.galeria img');
+      const modal = document.getElementById("modal");
+      const modalImg = document.getElementById("modal-img");
 
-  <footer>
-    <p>&copy; 2025 3M Manutenção Industrial. Todos os direitos reservados.</p>
-  </footer>
+      function openModal(el) {
+        modal.style.display = "block";
+        modalImg.src = el.src;
+        currentIndex = Array.from(images).indexOf(el);
+      }
+
+      function closeModal() {
+        modal.style.display = "none";
+      }
+
+      function changeImage(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = images.length - 1;
+        if (currentIndex >= images.length) currentIndex = 0;
+        modalImg.src = images[currentIndex].src;
+      }
+
+      images.forEach(img => {
+        img.onclick = function () {
+          openModal(this);
+        };
+      });
+
+      window.openModal = openModal;
+      window.closeModal = closeModal;
+      window.changeImage = changeImage;
+    };
+  </script>
 </body>
 </html>
